@@ -1,4 +1,4 @@
-/* ================= FOOTER MAIN ================= */
+
 
 .ALL-FOOTER-CONTENTS {
   background-color: #000;
@@ -7,7 +7,7 @@
   font-family: 'Inter', system-ui, sans-serif;
 }
 
-/* ================= TOP FOOTER ================= */
+
 
 .Footer_container {
   display: flex;
@@ -18,7 +18,7 @@
   background-color: #000;
 }
 
-/* ================= TITLES ================= */
+
 
 .footer_tit h3 {
   font-size: 28px;
@@ -27,7 +27,7 @@
   color: white;
 }
 
-/* ================= LEFT CONTENT ================= */
+
 
 .content_icons,
 .Footer_between,
@@ -37,7 +37,7 @@
   gap: 20px;
 }
 
-/* ================= LINKS ================= */
+
 
 .Footer_btn {
   display: flex;
@@ -55,7 +55,7 @@
   transform: translateX(5px);
 }
 
-/* ================= SOCIAL ICONS ================= */
+
 
 .Footer_icons {
   display: flex;
@@ -81,7 +81,6 @@
   border-color: #f59e0b;
 }
 
-/* ================= NEWSLETTER ================= */
 
 .newsletter-section {
   display: flex;
@@ -130,7 +129,7 @@
   background-color: #ffb31a;
 }
 
-/* ================= BOTTOM FOOTER ================= */
+
 
 .footer {
   background-color: #000;
@@ -154,7 +153,7 @@
   gap: 20px;
 }
 
-/* ================= LANGUAGE BOX ================= */
+
 
 .footer-box {
   border: 1px solid #333;
@@ -182,7 +181,7 @@
   font-size: 14px;
 }
 
-/* ================= RESPONSIVE ================= */
+
 
 @media (max-width: 992px) {
   .Footer_container {
