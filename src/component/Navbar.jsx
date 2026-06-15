@@ -8,6 +8,9 @@ function Navbar() {
   const [openMenu, setOpenMenu] = useState(null);
   const [mobileMenu, setMobileMenu] = useState(false);
 
+
+
+
   return (
     <>
       <div className="navcontainer">
@@ -16,11 +19,11 @@ function Navbar() {
           <span className="logo">miniture</span>
         </div>
 
-      
-       
+
+
         <ul className={`navlink ${mobileMenu ? "active" : ""}`}>
 
-        
+
           <li
             className="list"
             onMouseEnter={() => setOpenMenu("home")}
@@ -43,29 +46,51 @@ function Navbar() {
             )}
           </li>
 
-         
+
           <li
             className="list"
             onMouseEnter={() => setOpenMenu("catalog")}
             onMouseLeave={() => setOpenMenu(null)}
           >
             <div className="nav-item">
+
               Catalog
               <RiArrowDropDownLine />
             </div>
 
             {openMenu === "catalog" && (
-              <div className="dropdown">
-                <p>Sofas</p>
-                <p>Chairs</p>
-                <p>Tables</p>
-                <p>Lighting</p>
-                <p>Office</p>
+
+  
+              <div className="dropdown-section">
+                <div className="product-card">
+                  <div>ewughwcsnjeahxqigeoyi</div>
+                  <img src="/Images/chairp1.png" alt="" />
+                  <h4>Ana Grey Dining Chair</h4>
+                  <p>$299.99</p>
+                </div>
+
+                <div className="product-card">
+                  <img src="/Images/image.22.webp" alt="" />
+                  <h4>Axis 2-Piece Sectional Sofa</h4>
+                  <p>$339.99</p>
+                </div>
+
+                <div className="product-card">
+                  <img src="/Images/img23.png" alt="" />
+                  <h4>Axis 2-Seat Sofa</h4>
+                  <p>$239.99</p>
+                </div>
+
+                <div className="product-card">
+                  <img src="/Images/img24.png" alt="" />
+                  <h4>Curved Back Dining Chair</h4>
+                  <p>$129.99</p>
+                </div>
               </div>
             )}
           </li>
 
-         
+
           <li
             className="list"
             onMouseEnter={() => setOpenMenu("pages")}
@@ -78,28 +103,27 @@ function Navbar() {
 
             {openMenu === "pages" && (
               <div className="dropdown">
-                <p>About</p>
-                <p>FAQ</p>
-                <p>Services</p>
-                <p>Wishlist</p>
-                <p>Checkout</p>
+                <p>About Us</p>
+                <p>FAQs</p>
+                <p>Contact Us</p>
+
               </div>
             )}
           </li>
 
-      
+
           <li>
-            <a href="/Blog">Blog</a>
+            <a href="/blog">Blog</a>
           </li>
 
-          
+
           <li>
-            <a href="/Contact">Contact</a>
+            <a href="/contact">Contact</a>
           </li>
 
         </ul>
 
-        
+
         <div className="nav-icons">
           <IoSearchOutline />
           <IoPersonOutline />

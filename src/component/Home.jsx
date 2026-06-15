@@ -192,7 +192,7 @@ function Home() {
                   <FiShoppingBag />
                 </button>
 
-                <img className="imageMap1" src={item.img} alt={item.name} />
+                <img className="imageMap1" src={item.img} alt={item.name}/>
               </div>
 
               <div className="product-info">
