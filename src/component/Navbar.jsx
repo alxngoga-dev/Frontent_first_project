@@ -63,7 +63,6 @@ function Navbar() {
   
               <div className="dropdown-section">
                 <div className="product-card">
-                  <div>ewughwcsnjeahxqigeoyi</div>
                   <img src="/Images/chairp1.png" alt="" />
                   <h4>Ana Grey Dining Chair</h4>
                   <p>$299.99</p>

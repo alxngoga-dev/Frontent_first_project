@@ -92,7 +92,7 @@ const blue = [
   {
     id: 3,
     image:
-      "https://miniture-demo.myshopify.com/cdn/shop/articles/blog-12_a943c8a3-694f-488d-b028-63350a6d2b5d.jpg?v=1777045670&width=720",
+      "",
     date: "October 24, 2023",
     comments: "0 comments",
     title: "6 Tips to Spice Up a Neutral Color",
