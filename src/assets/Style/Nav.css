@@ -213,7 +213,7 @@ a:hover{
   }
 }
 
-/* Dropdown container */
+
 .dropdown-section {
   position: absolute;
   top: 100%;
@@ -233,7 +233,7 @@ a:hover{
   transform: translateX(-700px);
 }
 
-/* Product card */
+
 .dropdown-section div {
   text-align: center;
   cursor: pointer;
