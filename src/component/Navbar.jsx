@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IoSearchOutline, IoPersonOutline } from "react-icons/io5";
 import { LiaShoppingBagSolid } from "react-icons/lia";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { Link } from "react-router";
 
 function Navbar() {
   const [openMenu, setOpenMenu] = useState(null);
@@ -109,7 +110,7 @@ function Navbar() {
 
         <div className="nav-icons">
           <IoSearchOutline />
-          <IoPersonOutline />
+         <Link to="/signup"><IoPersonOutline /></Link> 
           <LiaShoppingBagSolid />
         </div>
       </div>
