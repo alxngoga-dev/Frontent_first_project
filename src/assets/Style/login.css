@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.login-page {
+  min-height: 100vh;
+  background: #f8f5ed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-card {
+  width: 420px;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.logo span {
+  color: #f7c600;
+}
+
+.login-card h2 {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-card p {
+  text-align: center;
+  color: #777;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 12px;
+  height: 50px;
+}
+
+.input-wrapper .icon {
+  color: #888;
+  font-size: 18px;
+}
+
+.input-wrapper input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+.eye-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #777;
+  display: flex;
+  align-items: center;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0 25px;
+  font-size: 14px;
+}
+
+.options a {
+  color: #f7c600;
+  text-decoration: none;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.signin-btn {
+  width: 100%;
+  height: 50px;
+  border: none;
+  background: #f7c600;
+  color: #000;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.divider {
+  text-align: center;
+  margin: 25px 0;
+  color: #999;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background: #e5e5e5;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-btn {
+  flex: 1;
+  height: 50px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.signup-text {
+  margin-top: 25px;
+  text-align: center;
+  color: #666;
+}
+
+.signup-text a {
+  color: #f7c600;
+  text-decoration: none;
+  font-weight: 600;
+}

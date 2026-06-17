@@ -5,7 +5,8 @@ import "./assets/Style/Nav.css"
 import Home from './component/Home'
 import Contact from './component/Contact'
 import Blog from './component/Blog'
-import Signup from './component/registrationform'
+import Login from './component/login'
+import Signup from './component/Signup'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         
         </Route>
          <Route path='/signup' element = {<Signup/>}/>
+          <Route path='/login' element = {<Login/>}/>
        </Routes>
      </BrowserRouter>
     </>

@@ -4,6 +4,7 @@ import { LiaShoppingBagSolid } from "react-icons/lia";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link } from "react-router";
 
+
 function Navbar() {
   const [openMenu, setOpenMenu] = useState(null);
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -110,7 +111,7 @@ function Navbar() {
 
         <div className="nav-icons">
           <IoSearchOutline />
-         <Link to="/signup"><IoPersonOutline /></Link> 
+         <Link to="/login"><IoPersonOutline /></Link> 
           <LiaShoppingBagSolid />
         </div>
       </div>
