@@ -7,24 +7,28 @@ import Contact from './component/Contact'
 import Blog from './component/Blog'
 import Login from './component/login'
 import Signup from './component/Signup'
+import ForgotPassword from "./component/ForgotPassword";
+import { Link } from "react-router-dom";
+import Dashboard from './component/Dashboard'
 
 function App() {
   return (
-    <>
-     <BrowserRouter>
-       <Routes>
-        <Route path='/' element = {<Layout/>}>
-        <Route index element={<Home/>}/>
-        <Route path='/contact' element ={<Contact/>}/>
-        <Route path='/blog' element = {<Blog/>}/>
-        
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="blog" element={<Blog />} />
         </Route>
-         <Route path='/signup' element = {<Signup/>}/>
-          <Route path='/login' element = {<Login/>}/>
-       </Routes>
-     </BrowserRouter>
-    </>
-  )
-}
 
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/forgot-password"element={<ForgotPassword />}
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+}
 export default App
