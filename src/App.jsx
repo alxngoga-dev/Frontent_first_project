@@ -9,7 +9,8 @@ import Login from './component/login'
 import Signup from './component/Signup'
 import ForgotPassword from "./component/ForgotPassword";
 import { Link } from "react-router-dom";
-import Dashboard from './component/Dashboard'
+import Dahboard from './component/Dashbord'
+
 
 function App() {
   return (
@@ -23,11 +24,14 @@ function App() {
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dahboard />} />
+    
         <Route
           path="/forgot-password"element={<ForgotPassword />}
         />
+         
       </Routes>
+
     </BrowserRouter>
   );
 }
