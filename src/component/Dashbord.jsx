@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+
 import {
   FiBell,
   FiBox,
@@ -6,6 +7,7 @@ import {
   FiGrid,
   FiHome,
   FiLayers,
+  FiLogOut,
   FiMenu,
   FiMoon,
   FiMoreVertical,
@@ -39,6 +41,7 @@ const menuItems = [
   { id: "category", label: "Category", icon: FiGrid },
   { id: "products", label: "Products", icon: FiPackage },
   { id: "settings", label: "Settings", icon: FiSettings },
+  { id: "logout", label: "logout", icon: FiLogOut },
 ];
 
 const stats = [
@@ -68,38 +71,70 @@ const categoryData = [
   { name: "Adsense", value: 19, color: "#dce8ff", products: "806" },
 ];
 
-const orders = [
-  { id: "#ORD-1206", customer: "Sophia Carter", product: "Modern Lounge Chair", status: "Paid", total: "$420.00", date: "19 Jun" },
-  { id: "#ORD-1205", customer: "Mike Johnson", product: "Oak Coffee Table", status: "Pending", total: "$289.00", date: "18 Jun" },
-  { id: "#ORD-1204", customer: "Lina Brooks", product: "Minimal Desk Lamp", status: "Shipped", total: "$96.00", date: "18 Jun" },
-  { id: "#ORD-1203", customer: "Noah Wilson", product: "Studio Sofa", status: "Paid", total: "$1,250.00", date: "17 Jun" },
-];
 
 const products = [
   { name: "Modern Lounge Chair", sku: "CH-204", stock: 42, price: "$420", image: "/Images/chair1.png" },
   { name: "Nordic Accent Chair", sku: "CH-118", stock: 18, price: "$315", image: "/Images/chair4.png" },
-  { name: "Soft Studio Chair", sku: "CH-097", stock: 27, price: "$260", image: "/Images/chair7.png" },
-  { name: "Classic Wood Chair", sku: "CH-061", stock: 13, price: "$190", image: "/Images/chair8.png" },
+  { name: "Soft Studio Chair", sku: "CH-097", stock: 27, price: "$260",   image: "/Images/chair7.png" },
+  { name: "Classic Wood Chair", sku: "CH-061", stock: 13, price: "$190",  image: "/Images/chair8.png"},
 ];
 
-function Dahboard() {
+function Dashboard() {
   const [activePage, setActivePage] = useState("home");
-  const currentTitle = menuItems.find((item) => item.id === activePage)?.label;
+
+  // Orders from MongoDB
+  const [orders, setOrders] = useState([]);
+
+  const currentTitle = menuItems.find(
+    (item) => item.id === activePage
+  )?.label;
+
+  // Fetch orders when page loads
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
+  // Get orders from backend
+  const fetchOrders = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/v1/orders/get-allOrders"
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+        setOrders(data.orders);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <main className="dashboard-shell">
-      <Sidebar activePage={activePage} setActivePage={setActivePage} />
+      <Sidebar
+        activePage={activePage}
+        setActivePage={setActivePage}
+      />
+
       <section className="dashboard-main">
         <Topbar title={currentTitle} />
+
         <div className="page-content">
           {activePage === "home" && <DashboardHome />}
-          {activePage === "orders" && <OrdersPage />}
+
+          {activePage === "orders" && (
+            <OrdersPage orders={orders} />
+          )}
+
           {activePage === "category" && <CategoryPage />}
+
           {activePage === "products" && <ProductsPage />}
+
           {activePage === "settings" && <SettingsPage />}
         </div>
       </section>
-      
     </main>
   );
 }
@@ -260,6 +295,7 @@ function RevenueCard() {
   );
 }
 
+
 function SalesCategory() {
   return (
     <article className="panel category-panel">
@@ -325,7 +361,7 @@ function ScheduleCard() {
   );
 }
 
-function OrdersPage() {
+function OrdersPage({ orders }) {
   return (
     <section className="single-page">
       <PageHero icon={FiShoppingBag} title="Orders" text="Track recent purchases, payment state, and fulfillment status." />
@@ -366,7 +402,7 @@ function CategoryPage() {
 
 function ProductsPage() {
   return (
-    <section className="single-page">
+      <section className="single-page">
       <PageHero icon={FiBox} title="Products" text="Manage your featured products, pricing, and available inventory." />
       <div className="product-grid">
         {products.map((product) => (
@@ -465,21 +501,35 @@ function DataTable({ rows }) {
             <th>Date</th>
           </tr>
         </thead>
+
         <tbody>
           {rows.map((row) => (
-            <tr key={row.id}>
-              <td>{row.id}</td>
+            <tr key={row._id}>
+              <td>{row.order}</td>
+
               <td>{row.customer}</td>
+
               <td>{row.product}</td>
-              <td><span className={`status ${row.status.toLowerCase()}`}>{row.status}</span></td>
-              <td>{row.total}</td>
-              <td>{row.date}</td>
+
+              <td>
+                <span className={`status ${row.status.toLowerCase()}`}>
+                  {row.status}
+                </span>
+              </td>
+
+              <td>${row.total}</td>
+
+              <td>
+                {new Date(row.orderDate).toLocaleDateString()}
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
     </div>
   );
-}
 
-export default Dahboard;
+  
+}
+    
+export default Dashboard;
