@@ -18,6 +18,7 @@ import {
   FiShoppingCart,
   FiSliders,
   FiTrendingUp,
+  FiUsers
 } from "react-icons/fi";
 import {
   Area,
@@ -41,6 +42,7 @@ const menuItems = [
   { id: "category", label: "Category", icon: FiGrid },
   { id: "products", label: "Products", icon: FiPackage },
   { id: "settings", label: "Settings", icon: FiSettings },
+  { id: "users", label: "users", icon: FiUsers },
   { id: "logout", label: "logout", icon: FiLogOut },
 ];
 
@@ -75,8 +77,8 @@ const categoryData = [
 const products = [
   { name: "Modern Lounge Chair", sku: "CH-204", stock: 42, price: "$420", image: "/Images/chair1.png" },
   { name: "Nordic Accent Chair", sku: "CH-118", stock: 18, price: "$315", image: "/Images/chair4.png" },
-  { name: "Soft Studio Chair", sku: "CH-097", stock: 27, price: "$260",   image: "/Images/chair7.png" },
-  { name: "Classic Wood Chair", sku: "CH-061", stock: 13, price: "$190",  image: "/Images/chair8.png"},
+  { name: "Soft Studio Chair", sku: "CH-097", stock: 27, price: "$260", image: "/Images/chair7.png" },
+  { name: "Classic Wood Chair", sku: "CH-061", stock: 13, price: "$190", image: "/Images/chair8.png" },
 ];
 
 function Dashboard() {
@@ -84,6 +86,7 @@ function Dashboard() {
 
   // Orders from MongoDB
   const [orders, setOrders] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const currentTitle = menuItems.find(
     (item) => item.id === activePage
@@ -92,6 +95,7 @@ function Dashboard() {
   // Fetch orders when page loads
   useEffect(() => {
     fetchOrders();
+    fetchUsers();
   }, []);
 
   // Get orders from backend
@@ -111,6 +115,23 @@ function Dashboard() {
     }
   };
 
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/v1/userrouter/getallusers"
+      );
+
+      const data = await response.json();
+
+      console.log(data);
+
+      if (data.success) {
+        setUsers(data.users || []);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <main className="dashboard-shell">
       <Sidebar
@@ -133,6 +154,7 @@ function Dashboard() {
           {activePage === "products" && <ProductsPage />}
 
           {activePage === "settings" && <SettingsPage />}
+          {activePage === "users" && <UsersPage users={users} />}
         </div>
       </section>
     </main>
@@ -402,7 +424,7 @@ function CategoryPage() {
 
 function ProductsPage() {
   return (
-      <section className="single-page">
+    <section className="single-page">
       <PageHero icon={FiBox} title="Products" text="Manage your featured products, pricing, and available inventory." />
       <div className="product-grid">
         {products.map((product) => (
@@ -417,7 +439,10 @@ function ProductsPage() {
           </article>
         ))}
       </div>
+
     </section>
+
+
   );
 }
 
@@ -527,9 +552,71 @@ function DataTable({ rows }) {
         </tbody>
       </table>
     </div>
+
   );
 
-  
+} function UsersPage({ users = [] }) {
+  return (
+    <section className="single-page">
+      <PageHero
+        icon={FiUsers}
+        title="Users"
+        text="All registered users"
+      />
+
+      <article className="panel table-panel">
+        <PanelHeader
+          title="Users List"
+          subtitle="Website users"
+          menu
+        />
+
+        <div className="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                
+                <th>Role</th>
+                <th>Joined</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {users.length > 0 ? (
+                users.map((user) => (
+                  <tr key={user._id}>
+                    <td>
+                      {user.username ||
+                        `${user.firstname || ""} ${user.lastname || ""}`}
+                    </td>
+
+                    <td>{user.email}</td>
+
+                    {/* <td>{user.phone || "No phone"}</td> */}
+
+                    <td>{user.userRole || user.role}</td>
+
+                    <td>
+                      {user.createdAt
+                        ? new Date(user.createdAt).toLocaleDateString()
+                        : "No Date"}
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5">No users found</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  );
 }
-    
+
+
 export default Dashboard;
